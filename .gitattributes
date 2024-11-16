@@ -33,3 +33,4 @@
 *test_creative.tscn filter=lfs diff=lfs merge=lfs -text
 *Terrain01.res filter=lfs diff=lfs merge=lfs -text
 *Terrain01.tres filter=lfs diff=lfs merge=lfs -text
+*importer.tscn filter=lfs diff=lfs merge=lfs -text
