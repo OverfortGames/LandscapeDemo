@@ -8,9 +8,6 @@
 [ext_resource type="Terrain3DAssets" uid="uid://chy63yxtqdx6c" path="res://Resources/Terrain01_Asset.tres" id="6_1r1lc"]
 [ext_resource type="Script" path="res://camera_controller.gd" id="7_lpqmi"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_88nbh"]
-radius = 1.0
-
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_f3r7k"]
 panorama = ExtResource("1_ebvp4")
 energy_multiplier = 0.35
@@ -68,32 +65,23 @@ auto_exposure_max_sensitivity = 100.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_81jcm"]
 size = Vector2(30000, 30000)
-subdivide_width = 2048
-subdivide_depth = 2048
+subdivide_width = 1
+subdivide_depth = 1
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j23m1"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_88nbh"]
+radius = 1.0
+
 [node name="LandscapeDemo" type="Node3D"]
 
-[node name="CharacterBody3D - Controller" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 0)
-script = ExtResource("7_lpqmi")
-camera = NodePath("Camera3D")
-decelerationLerpSpeed = 10.0
-cameraSensitivity = 0.01
+[node name="LIGHTING" type="Node" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D - Controller"]
-shape = SubResource("SphereShape3D_88nbh")
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D - Controller"]
-
-[node name="MAP" type="Node" parent="."]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="MAP"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="LIGHTING"]
 environment = SubResource("Environment_fsq2q")
 camera_attributes = SubResource("CameraAttributesPractical_204c3")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MAP"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="LIGHTING"]
 transform = Transform3D(-0.464842, 0.367167, -0.805674, 0, 0.909961, 0.414694, 0.885394, 0.192767, -0.422988, 0, 0, 0)
 light_color = Color(1, 0.970833, 0.95, 1)
 light_energy = 1.5
@@ -102,6 +90,8 @@ shadow_enabled = true
 shadow_bias = 0.01
 shadow_blur = 0.5
 directional_shadow_max_distance = 5000.0
+
+[node name="MAP" type="Node" parent="."]
 
 [node name="Clouds" type="FogVolume" parent="MAP"]
 transform = Transform3D(-0.026177, 0, 0.999657, 0, 1, 0, -0.999657, 0, -0.026177, 0, 31.155, 0)
@@ -127,3 +117,15 @@ assets = ExtResource("6_1r1lc")
 mesh_lods = 10
 mesh_size = 64
 mesh_vertex_spacing = 0.75
+
+[node name="Drone" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 0)
+script = ExtResource("7_lpqmi")
+camera = NodePath("Camera3D")
+decelerationLerpSpeed = 10.0
+cameraSensitivity = 0.01
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Drone"]
+shape = SubResource("SphereShape3D_88nbh")
+
+[node name="Camera3D" type="Camera3D" parent="Drone"]
