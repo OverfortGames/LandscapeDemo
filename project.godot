@@ -14,6 +14,10 @@ config/name="Landscape"
 run/main_scene="res://Scenes/landscape_demo.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
+[display]
+
+window/size/mode=4
+
 [dotnet]
 
 project/assembly_name="Landscape"

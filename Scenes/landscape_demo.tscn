@@ -48,7 +48,7 @@ volumetric_fog_density = 0.0
 volumetric_fog_length = 2500.0
 volumetric_fog_ambient_inject = 0.1
 adjustment_enabled = true
-adjustment_contrast = 1.55
+adjustment_contrast = 1.45
 adjustment_saturation = 0.9
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_204c3"]
@@ -120,10 +120,13 @@ mesh_vertex_spacing = 0.75
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 0)
 script = ExtResource("7_lpqmi")
 camera = NodePath("Camera3D")
+normalSpeed = 50.0
+sprintSpeed = 300.0
 decelerationLerpSpeed = 10.0
-cameraSensitivity = 0.01
+cameraSensitivity = 0.001
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Drone"]
 shape = SubResource("SphereShape3D_88nbh")
 
 [node name="Camera3D" type="Camera3D" parent="Drone"]
+far = 25000.0
